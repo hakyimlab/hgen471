@@ -1,0 +1,31 @@
+---
+title: "binomial-parameter-estimation"
+author: "Hae Kyung Im"
+date: "2020-01-06"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r}
+
+unnorm_lik_fun = function(theta) {theta^y * (1 - theta)^(n-y)}
+
+n = 10
+y = rbinom(1,n,0.6)
+curve(unnorm_lik_fun,from = 0,to = 1, main=paste("n = ",n,";  y = ",y))
+
+```
+
+```{r}
+n = 100
+y = rbinom(1,n,0.6)
+curve(unnorm_lik_fun,from = 0,to = 1, main=paste("n = ",n,";  y = ",y))
+```
+
+```{r}
+n = 1000
+y = rbinom(1,n,0.6)
+curve(unnorm_lik_fun,from = 0,to = 1, main=paste("n = ",n,";  y = ",y))
+```
