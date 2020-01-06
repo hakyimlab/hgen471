@@ -21,20 +21,26 @@ n = 241945 + 251527
 
 ```{r unnormalized, echo=FALSE, eval=FALSE}
 
-unnorm_lik_fun2 = function(theta) {exp( y*log(theta) + (n-y)*log((1 - theta)) )}
+unnorm_posterior2 = function(theta) {exp( y*log(theta) + (n-y)*log((1 - theta)) )}
 
-curve(unnorm_lik_fun2,from = 0,to = 1, main=paste("n = ",n,";  y = ",y))
+curve(unnorm_posterior2,from = 0,to = 1, main=paste("n = ",n,";  y = ",y),xlab="theta",ylab='unnorm_posterior')
+
+print("the unnormalized density and the normalizing factors are too small and lead to numerical errors")
 
 ```
 
 ```{r normalized}
 
-norm_lik_fun = function(theta) dbeta(theta,shape1 = y+1, shape2 = n- y + 1)
-curve(norm_lik_fun,from = 0,to = 1, main=paste("n = ",n,";  y = ",y))
+posterior = function(theta) dbeta(theta,shape1 = y+1, shape2 = n- y + 1)
+curve(posterior,from = 0,to = 1, main=paste("n = ",n,";  y = ",y),xlab="theta",ylab='posterior')
 
 ```
 
 ```{r zoom in}
-curve(norm_lik_fun,from = 0.485,to = 0.495, main=paste("n = ",n,";  y = ",y))
+curve(posterior,from = 0.485,to = 0.495, main=paste("n = ",n,";  y = ",y),xlab="theta",ylab='posterior')
 ```
 
+```{r zoom in and mle shown}
+curve(posterior,from = 0.485,to = 0.495, main=paste("n = ",n,";  y = ",y, "; mle shown in gray"),xlab="theta",ylab='posterior')
+abline(v=y/n,col='gray')
+```
