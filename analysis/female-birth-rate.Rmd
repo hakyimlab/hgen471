@@ -11,10 +11,15 @@ editor_options:
 
 We are told that 241,945 girls and 251,527 boys were born in Paris from 1745 to 1770.
 
-```{r unnormalized}
+```{r data}
 
 y = 241945
 n = 241945 + 251527
+
+```
+
+
+```{r unnormalized, echo=FALSE, eval=FALSE}
 
 unnorm_lik_fun2 = function(theta) {exp( y*log(theta) + (n-y)*log((1 - theta)) )}
 
@@ -27,5 +32,9 @@ curve(unnorm_lik_fun2,from = 0,to = 1, main=paste("n = ",n,";  y = ",y))
 norm_lik_fun = function(theta) dbeta(theta,shape1 = y+1, shape2 = n- y + 1)
 curve(norm_lik_fun,from = 0,to = 1, main=paste("n = ",n,";  y = ",y))
 
+```
+
+```{r zoom in}
+curve(norm_lik_fun,from = 0.485,to = 0.495, main=paste("n = ",n,";  y = ",y))
 ```
 
