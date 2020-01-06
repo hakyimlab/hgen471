@@ -524,18 +524,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471tree1c6c15ca49349c259ade7ab8b4388a50801a3644targetblank1c6c15ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/1c6c15ca49349c259ade7ab8b4388a50801a3644" target="_blank">1c6c15c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471tree308b9ec2d7be36dafbad6ddb0c389cb6749c340btargetblank308b9eca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/308b9ec2d7be36dafbad6ddb0c389cb6749c340b" target="_blank">308b9ec</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471tree1c6c15ca49349c259ade7ab8b4388a50801a3644targetblank1c6c15ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471tree308b9ec2d7be36dafbad6ddb0c389cb6749c340btargetblank308b9eca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
-Untracked files:
-    Untracked:  analysis/binomial-parameter-estimation.Rmd
-
+working directory clean
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -578,6 +576,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/hakyimlab/hgen471/blob/308b9ec2d7be36dafbad6ddb0c389cb6749c340b/analysis/female-birth-rate.Rmd" target="_blank">308b9ec</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-06
+</td>
+<td>
+wflow_publish(“analysis/female-birth-rate.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hakyimlab/hgen471/45f29756499a562c980906ece0e164b736a3a548/docs/female-birth-rate.html" target="_blank">45f2975</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/hakyimlab/hgen471/blob/1c6c15ca49349c259ade7ab8b4388a50801a3644/analysis/female-birth-rate.Rmd" target="_blank">1c6c15c</a>
 </td>
 <td>
@@ -606,7 +638,10 @@ n = 241945 + 251527
 unnorm_lik_fun2 = function(theta) {exp( y*log(theta) + (n-y)*log((1 - theta)) )}
 
 curve(unnorm_lik_fun2,from = 0,to = 1, main=paste(&quot;n = &quot;,n,&quot;;  y = &quot;,y))</code></pre>
-<p><img src="figure/female-birth-rate.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/female-birth-rate.Rmd/unnormalized-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>norm_lik_fun = function(theta) dbeta(theta,shape1 = y+1, shape2 = n- y + 1)
+curve(norm_lik_fun,from = 0,to = 1, main=paste(&quot;n = &quot;,n,&quot;;  y = &quot;,y))</code></pre>
+<p><img src="figure/female-birth-rate.Rmd/normalized-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
