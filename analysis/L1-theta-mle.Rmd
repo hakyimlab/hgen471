@@ -1,0 +1,34 @@
+---
+title: "L1-theta-mle"
+author: "Hae Kyung Im"
+date: "2020-01-06"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+
+n = 10
+y = 8
+likefun = function(theta) {theta^y * (1 - theta)^(n-y)}
+
+curve(likefun,from = 0,to = 1, main=paste("n = ",n,";  y = ",y),xlab="theta", ylab="likelihood")
+abline(v=y/n,col='gray')
+
+```
+
+What if we got 10 heads?
+```{r}
+
+n = 10
+y = 10
+likefun = function(theta) {theta^y * (1 - theta)^(n-y)}
+
+curve(likefun,from = 0,to = 1, main=paste("n = ",n,";  y = ",y),xlab="theta", ylab="likelihood")
+abline(v=y/n,col='gray')
+
+```
+
