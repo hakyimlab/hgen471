@@ -1,7 +1,7 @@
-name: "hgen471"
+name: hgen471
 output_dir: ../docs
 navbar:
-  title: "hgen471"
+  title: hgen471
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,10 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/hakyimlab/hgen471
 output:
   workflowr::wflow_html:
     toc: yes
