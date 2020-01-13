@@ -22,3 +22,14 @@ abline(h=1,col='gray')
 
 ```
 
+## uniform distribution
+
+```{r}
+
+pvec = runif(1e6)
+hist(pvec,20, xlab = "p-values", ylab="count",main="")
+
+hist(pvec[pvec<0.01])
+
+```
+
