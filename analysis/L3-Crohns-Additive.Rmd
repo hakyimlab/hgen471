@@ -1,0 +1,45 @@
+---
+title: "L3-Crohns-Additive"
+author: "Hae Kyung Im"
+date: "2020-01-12"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Crohns additive test of association with rs11957134
+
+```{r}
+
+m = matrix(c(341,395,3151,5467),nrow=2)
+row.names(m) = c("crohns","control")
+colnames(m) = c("A","G")
+print(m)
+chisq.test(m)
+
+```
+
+```{r}
+
+fisher.test(m)
+
+```
+
+
+## example when chi2 approximation fails
+
+```{r}
+
+m = matrix(c(11,0,31,54),nrow=2)
+row.names(m) = c("crohns","control")
+colnames(m) = c("A","G")
+print(m)
+
+chisq.test(m)$p.value
+fisher.test(m)$p.value
+
+chisq.test(m)$p.value/fisher.test(m)$p.value
+
+```
+
+
