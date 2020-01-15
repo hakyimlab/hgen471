@@ -1,0 +1,113 @@
+---
+title: "L3-Bonferroni"
+author: "Hae Kyung Im"
+date: "2020-01-13"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r functions }
+
+fastlm = function(xx,yy)
+{
+  ## compute betahat (regression coef) and pvalue with Ftest
+  ## for now it does not take covariates
+
+  df1 = 2
+  df0 = 1
+  ind = !is.na(xx) & !is.na(yy)
+  xx = xx[ind]
+  yy = yy[ind]
+  n = sum(ind)
+  xbar = mean(xx)
+  ybar = mean(yy)
+  xx = xx - xbar
+  yy = yy - ybar
+
+  SXX = sum( xx^2 )
+  SYY = sum( yy^2 )
+  SXY = sum( xx * yy )
+
+  betahat = SXY / SXX
+
+  RSS1 = sum( ( yy - xx * betahat )^2 )
+  RSS0 = SYY
+
+  fstat = ( ( RSS0 - RSS1 ) / ( df1 - df0 ) )  / ( RSS1 / ( n - df1 ) )
+  pval = 1 - pf(fstat, df1 = ( df1 - df0 ), df2 = ( n - df1 ))
+  res = list(betahat = betahat, pval = pval)
+
+  return(res)
+}
+
+```
+
+## calculate probability of at least one false positive (reject null when null is true)
+
+```{r}
+
+alpha = 0.05
+
+Patleastonemistake = function(m) {1 - (1-alpha)^m}
+
+curve(Patleastonemistake,from = 1, to=100, ylab="Prob at least one wrong", xlab="m = number of tests")
+grid()
+abline(h=1,col='gray')
+
+
+```
+
+## show p(null) has uniform distribution when phenotype Y is unrelated to genotype X
+
+```{r}
+
+nsim = 1000000
+
+
+nsam = 100
+maf = 0.30
+Xfather = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim )
+Xmother = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim )
+Xboth = Xfather+ Xmother
+
+Y = matrix( rnorm(nsam*nsim), nsam, nsim)
+
+pvec = rep(NA,nsim)
+bvec = rep(NA,nsim)
+
+for(ss in 1:nsim)
+{
+  if(round(ss/100)==ss) print(ss)
+  fit = fastlm(Xboth[,ss], Y[,ss])
+  pvec[ss] = fit$pval  
+  bvec[ss] = fit$betahat
+}
+
+
+hist(pvec,xlab="p-value",main="Histogram of p-values under Null")
+
+```
+
+
+## example of winner's curse (even when effect size is 0, we get larger when we select significant SNPs)
+
+```{r}
+
+ind = which(pvec < 0.0001)
+
+hist(abs(bvec[ind]),main='Selected estimated effect sizes')
+hist(abs(bvec),main='Unselected estimated effect sizes')
+
+
+df = tibble(effect = c(bvec[ind],bvec), type = c(rep("signif",length(ind)),rep("all",length(bvec)) ) )
+
+ggplot(df, aes(abs(effect), fill=type)) + geom_density(alpha = 0.6, color=NA) + theme_bw(base_size = 15) + ggtitle("Winner's curse")
+
+```
+
