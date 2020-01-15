@@ -1,0 +1,140 @@
+---
+title: "L4-power"
+author: "Hae Kyung Im"
+date: "2020-01-14"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r functions }
+
+fastlm = function(xx,yy)
+{
+  ## compute betahat (regression coef) and pvalue with Ftest
+  ## for now it does not take covariates
+
+  df1 = 2
+  df0 = 1
+  ind = !is.na(xx) & !is.na(yy)
+  xx = xx[ind]
+  yy = yy[ind]
+  n = sum(ind)
+  xbar = mean(xx)
+  ybar = mean(yy)
+  xx = xx - xbar
+  yy = yy - ybar
+
+  SXX = sum( xx^2 )
+  SYY = sum( yy^2 )
+  SXY = sum( xx * yy )
+
+  betahat = SXY / SXX
+
+  RSS1 = sum( ( yy - xx * betahat )^2 )
+  RSS0 = SYY
+
+  fstat = ( ( RSS0 - RSS1 ) / ( df1 - df0 ) )  / ( RSS1 / ( n - df1 ) )
+  pval = 1 - pf(fstat, df1 = ( df1 - df0 ), df2 = ( n - df1 ))
+  res = list(betahat = betahat, pval = pval)
+
+  return(res)
+}
+
+```
+
+## power calculation - simulate Y=phenotype under null and alternative
+
+```{r simulate Y data}
+
+nsim = 10000
+nsam = 1000
+maf = 0.30
+r2 = 0.01 ## effect size is calculated as r2 = beta^2 *2*maf*(1-maf)
+
+sig2Y = 1
+beta = sqrt( r2 * sig2Y / (2*maf*(1-maf)) )
+sig2epsi = sig2Y * (1 - r2)
+
+simpower = function(nsim,nsam,maf,beta)
+{
+  Xfather = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim )
+  Xmother = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim )
+  Xboth = Xfather+ Xmother
+  Yalt = matrix( rnorm(nsam*nsim), nsam, nsim)*sig2epsi + Xboth * beta
+  Ynull = matrix( rnorm(nsam*nsim), nsam, nsim)*sig2Y
+  return(list(Yalt=Yalt, Ynull=Ynull, Xmat=Xboth))
+}
+
+simp = simpower(nsim,nsam,maf,beta)
+
+
+```
+
+## define some functions
+
+```{r run associations}
+
+runassoc = function(X,Y)
+{
+  pvec = rep(NA,ncol(X))
+  bvec = rep(NA,ncol(X))
+  for(ss in 1:ncol(X))
+  {
+    fit = fastlm(X[,ss], Y[,ss])
+    pvec[ss] = fit$pval  
+    bvec[ss] = fit$betahat
+  }
+  list(pvec=pvec, bvec=bvec)
+}
+
+p2z = function(b,p)
+{
+  ## calculate zscore from p-value and sign of effect size
+  sign(b) * abs(qnorm(p/2))
+}
+
+calcz = function(X,Y)
+{
+  tempo = runassoc(X,Y)
+  p2z(tempo$bvec,tempo$pvec)
+}
+
+
+```
+
+## calculate test statistics under the null and alternative
+
+```{r calc test statistic under null and alt}
+
+Zalt = calcz(simp$Xmat, simp$Yalt)
+Znull = calcz(simp$Xmat, simp$Ynull)
+
+tibble(Y = c(Zalt,Znull), type=c(rep("alt",length(Zalt)),rep("null",length(Znull))) ) %>% ggplot(aes(Y,fill=type)) + geom_density(color=NA,alpha=0.6) + theme_bw(base_size = 15)
+
+```
+
+## calculate power
+
+```{r}
+
+## define significance level
+
+alpha = 0.01
+
+## find threshold for rejection; we want P(Znull > alpha/2) two-sided
+
+threshold = quantile(Znull, 1 - alpha/2)
+
+## calculate proportion of Zalt above threshold
+
+mean(Zalt > threshold)
+
+
+
+```
+
