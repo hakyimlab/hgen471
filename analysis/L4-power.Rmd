@@ -135,6 +135,15 @@ threshold = quantile(Znull, 1 - alpha/2)
 mean(Zalt > threshold)
 
 
+```
+
+## check with pwr.r.test function
+
+```{r}
+
+## install.packages("pwr")
+ library(pwr)
+pwr.r.test(n=nsam, r= sqrt(r2), sig.level = alpha)
 
 ```
 
