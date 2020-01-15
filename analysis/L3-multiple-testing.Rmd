@@ -110,41 +110,12 @@ abline(h=1,col='gray')
 
 ```
 
-<!-- ## show p(null) has uniform distribution when phenotype Y is unrelated to genotype X -->
-
-<!-- ```{r pvalue distribution} -->
-
-<!-- nsim = 100000 -->
-<!-- nsam = 100 -->
-<!-- maf = 0.30 -->
-
-
-<!-- Xfather = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim ) -->
-<!-- Xmother = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim ) -->
-<!-- Xboth = Xfather+ Xmother -->
-
-<!-- Y = matrix( rnorm(nsam)) -->
-
-<!-- pvec = rep(NA,nsim) -->
-<!-- bvec = rep(NA,nsim) -->
-
-<!-- for(ss in 1:nsim) -->
-<!-- { -->
-<!--   fit = fastlm(Xboth[,ss], Y) -->
-<!--   pvec[ss] = fit$pval   -->
-<!--   bvec[ss] = fit$betahat -->
-<!-- } -->
-
-<!-- hist(pvec,xlab="p-value",main="Histogram of p-values under Null") -->
-
-<!-- ``` -->
-
 
 ## simulate a GWAS data under null (no assoc between X and Y)
 
 ```{r simulate GWAS data}
 
-nsnp = 10000
+nsnp = 1000000
 nsam = 1000
 maf = 0.30
 
