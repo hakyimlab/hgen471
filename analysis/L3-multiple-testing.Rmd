@@ -67,7 +67,7 @@ abline(h=1,col='gray')
 
 ```{r}
 
-nsim = 1000000
+nsim = 100000
 
 
 nsam = 100
@@ -100,10 +100,6 @@ hist(pvec,xlab="p-value",main="Histogram of p-values under Null")
 ```{r}
 
 ind = which(pvec < 0.0001)
-
-hist(abs(bvec[ind]),main='Selected estimated effect sizes')
-hist(abs(bvec),main='Unselected estimated effect sizes')
-
 
 df = tibble(effect = c(bvec[ind],bvec), type = c(rep("signif",length(ind)),rep("all",length(bvec)) ) )
 
