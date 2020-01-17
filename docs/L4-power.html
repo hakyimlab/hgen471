@@ -503,10 +503,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treebee3a3185495cf0b8634505616cd27c457d0c85btargetblankbee3a31a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/bee3a3185495cf0b8634505616cd27c457d0c85b" target="_blank">bee3a31</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treec5dd6b8312bc1c70609126d4a2c66d5cd1bfbb5ftargetblankc5dd6b8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/c5dd6b8312bc1c70609126d4a2c66d5cd1bfbb5f" target="_blank">c5dd6b8</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treebee3a3185495cf0b8634505616cd27c457d0c85btargetblankbee3a31a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treec5dd6b8312bc1c70609126d4a2c66d5cd1bfbb5ftargetblankc5dd6b8a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -514,7 +514,6 @@ Great! You are using Git for version control. Tracking code development and conn
 <pre><code>
 Ignored files:
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
 
 Unstaged changes:
     Modified:   analysis/L4-power.Rmd
@@ -556,6 +555,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/2ba18cc601df7201d7debb4e3cc3d996a7363d03/analysis/L4-power.Rmd" target="_blank">2ba18cc</a>
+</td>
+<td>
+Yanyu Liang
+</td>
+<td>
+2020-01-17
+</td>
+<td>
+workflowr::wflow_git_commit(all = T)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hakyimlab/hgen471/2ba18cc601df7201d7debb4e3cc3d996a7363d03/docs/L4-power.html" target="_blank">2ba18cc</a>
+</td>
+<td>
+Yanyu Liang
+</td>
+<td>
+2020-01-17
+</td>
+<td>
+workflowr::wflow_git_commit(all = T)
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -691,7 +724,7 @@ x dplyr::lag()    masks stats::lag()</code></pre>
 </div>
 <div id="phenotype-genotype-simulator" class="section level2">
 <h2>Phenotype-genotype simulator</h2>
-<p>To simulate genotype, we assume the locus is bialleilic and each individual is diploid. So that <span class="math inline">\(X ~ Binomial(2, f)\)</span> with <span class="math inline">\(f\)</span> as minor allele frequency (here we encode minor allele as 1 and major allele as 0).</p>
+<p>To simulate genotype, we assume the locus is bialleilic and each individual is diploid. So that <span class="math inline">\(X \sim Binomial(2, f)\)</span> with <span class="math inline">\(f\)</span> as minor allele frequency (here we encode minor allele as 1 and major allele as 0).</p>
 <p>Given genotype, to simulate phenotype, we need to know <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma_\epsilon^2\)</span>. So, we first calculate the effect size and the variance of the noise term from the proportion of variation explained, variance of trait, and minor allele frequency of the SNP.</p>
 <pre class="r"><code>simulate_genotype = function(maf, num_individuals, num_replicates) {
   # maf: minor allele frequency
@@ -794,6 +827,43 @@ Znull = calcz(data_null$X, data_null$Y)
 
 tibble(Y = c(Zalt,Znull), type=c(rep(&quot;alt&quot;,length(Zalt)),rep(&quot;null&quot;,length(Znull))) ) %&gt;% ggplot(aes(Y,fill=type)) + geom_density(color=NA,alpha=0.6) + theme_bw(base_size = 15)</code></pre>
 <p><img src="figure/L4-power.Rmd/calc_test_statistic-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-calc_test_statistic-1">
+Past versions of calc_test_statistic-1.png
+</button>
+</p>
+<div id="fig-calc_test_statistic-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/c5dd6b8312bc1c70609126d4a2c66d5cd1bfbb5f/docs/figure/L4-power.Rmd/calc_test_statistic-1.png" target="_blank">c5dd6b8</a>
+</td>
+<td>
+Yanyu Liang
+</td>
+<td>
+2020-01-17
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="calculate-power" class="section level2">
 <h2>Calculate power</h2>

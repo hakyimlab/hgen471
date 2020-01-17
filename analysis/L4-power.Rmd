@@ -70,7 +70,7 @@ where we assume
 
 ## Phenotype-genotype simulator
 
-To simulate genotype, we assume the locus is bialleilic and each individual is diploid. So that $X ~ Binomial(2, f)$ with $f$ as minor allele frequency (here we encode minor allele as 1 and major allele as 0).
+To simulate genotype, we assume the locus is bialleilic and each individual is diploid. So that $X \sim Binomial(2, f)$ with $f$ as minor allele frequency (here we encode minor allele as 1 and major allele as 0).
 
 Given genotype, to simulate phenotype, we need to know $\beta$ and $\sigma_\epsilon^2$. So, we first calculate the effect size and the variance of the noise term from the proportion of variation explained, variance of trait, and minor allele frequency of the SNP.
 
