@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Hae Kyung Im" />
@@ -90,7 +90,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -239,6 +238,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -251,48 +251,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -306,6 +267,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -427,7 +394,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -436,7 +403,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -445,17 +412,17 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-01-15
+<strong>Last updated:</strong> 2020-01-17
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>hgen471/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -464,12 +431,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -493,7 +460,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20200105code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20200105)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20200105)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -524,24 +491,33 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treeca9b4722cfcf3931c01b983fc0b28d338ae47c9ftargetblankca9b472a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/ca9b4722cfcf3931c01b983fc0b28d338ae47c9f" target="_blank">ca9b472</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treeca9b4722cfcf3931c01b983fc0b28d338ae47c9ftargetblankca9b472a" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treebee3a3185495cf0b8634505616cd27c457d0c85btargetblankbee3a31a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/bee3a3185495cf0b8634505616cd27c457d0c85b" target="_blank">bee3a31</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treebee3a3185495cf0b8634505616cd27c457d0c85btargetblankbee3a31a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/figure/
-    Ignored:    docs/.DS_Store
 
 Unstaged changes:
-    Modified:   analysis/L3-multiple-testing.Rmd
+    Modified:   analysis/L4-power.Rmd
 
 </code></pre>
 <p>
@@ -580,6 +556,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hakyimlab/hgen471/b2995deae3a1b8d5166a6c9622b707a0a91e3ac6/docs/L4-power.html" target="_blank">b2995de</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -639,19 +632,14 @@ power calc
 </div>
 </div>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>Registered S3 methods overwritten by &#39;ggplot2&#39;:
-  method         from 
-  [.quosures     rlang
-  c.quosures     rlang
-  print.quosures rlang</code></pre>
-<pre><code>── Attaching packages ────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>✔ ggplot2 3.1.1     ✔ purrr   0.3.2
-✔ tibble  2.1.2     ✔ dplyr   0.8.1
-✔ tidyr   0.8.3     ✔ stringr 1.4.0
-✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>── Conflicts ───────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>── Attaching packages ────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>✓ ggplot2 3.2.1     ✓ purrr   0.3.3
+✓ tibble  2.1.3     ✓ dplyr   0.8.3
+✓ tidyr   1.0.0     ✓ stringr 1.4.0
+✓ readr   1.3.1     ✓ forcats 0.4.0</code></pre>
+<pre><code>── Conflicts ───────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>fastlm = function(xx,yy)
 {
   ## compute betahat (regression coef) and pvalue with Ftest
@@ -683,31 +671,99 @@ power calc
 
   return(res)
 }</code></pre>
-<div id="power-calculation---simulate-yphenotype-under-null-and-alternative" class="section level2">
-<h2>power calculation - simulate Y=phenotype under null and alternative</h2>
-<pre class="r"><code>nsim = 10000
-nsam = 1000
-maf = 0.30
-r2 = 0.01 ## effect size is calculated as r2 = beta^2 *2*maf*(1-maf)
-
-sig2Y = 1
-beta = sqrt( r2 * sig2Y / (2*maf*(1-maf)) )
-sig2epsi = sig2Y * (1 - r2)
-
-simpower = function(nsim,nsam,maf,beta)
-{
-  Xfather = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim )
-  Xmother = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim )
-  Xboth = Xfather+ Xmother
-  Yalt = matrix( rnorm(nsam*nsim), nsam, nsim)*sig2epsi + Xboth * beta
-  Ynull = matrix( rnorm(nsam*nsim), nsam, nsim)*sig2Y
-  return(list(Yalt=Yalt, Ynull=Ynull, Xmat=Xboth))
-}
-
-simp = simpower(nsim,nsam,maf,beta)</code></pre>
+<div id="workflow-overview" class="section level2">
+<h2>Workflow overview</h2>
+<p>In this vignette, we’d like to:</p>
+<ol style="list-style-type: decimal">
+<li>Write a simulator to simulate genotype and phenotype under some pre-specified model.</li>
+<li>Simulate genotype and phenotype using the simulator under the null and alternative.</li>
+<li>Perform certain hypothesis test.</li>
+<li>Calculate the power of the test.</li>
+</ol>
+<p>As a concrete example, we pre-specify the model for continuous trait <span class="math inline">\(Y\)</span> and genotype <span class="math inline">\(X\)</span> as</p>
+<p><span class="math display">\[Y = \beta X + \epsilon, \epsilon ~ N(0, \sigma_\epsilon^2)\]</span></p>
+<p>where we assume</p>
+<ul>
+<li>genotype of the locus follows Hardy-Weinberg equilibrium with a pre-specified minor allele frequency.</li>
+<li>trait is normalized to variance 1 and the proportion of variation explained by the SNP is <span class="math inline">\(r^2\)</span>.</li>
+</ul>
+<p><strong>Note that</strong> the proportion of variation explained, minor allele frequency, effect size (<span class="math inline">\(\beta\)</span>) are related under the model above and you will be/have already been asked to work it out in assignment.</p>
 </div>
-<div id="define-some-functions" class="section level2">
-<h2>define some functions</h2>
+<div id="phenotype-genotype-simulator" class="section level2">
+<h2>Phenotype-genotype simulator</h2>
+<p>To simulate genotype, we assume the locus is bialleilic and each individual is diploid. So that <span class="math inline">\(X ~ Binomial(2, f)\)</span> with <span class="math inline">\(f\)</span> as minor allele frequency (here we encode minor allele as 1 and major allele as 0).</p>
+<p>Given genotype, to simulate phenotype, we need to know <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma_\epsilon^2\)</span>. So, we first calculate the effect size and the variance of the noise term from the proportion of variation explained, variance of trait, and minor allele frequency of the SNP.</p>
+<pre class="r"><code>simulate_genotype = function(maf, num_individuals, num_replicates) {
+  # maf: minor allele frequency
+  # num_individuals: the number of individuals in each replicates
+  # num_replicates: the number of replicates
+  # it returns a matrix with num_individuals rows and num_replicates columns
+  genotype = matrix( 
+    rbinom(num_individuals * num_replicates, 2, maf), 
+    nrow = num_individuals, 
+    ncol = num_replicates 
+  )
+  return(genotype)
+}
+simulate_phenotype = function(genotype, beta, sig2epsi) {
+  # genotype: each column is one replicate 
+  # beta: effect size of the linear model
+  # sig2epsi: the variance of the noise term
+  num_individuals = nrow(genotype)
+  num_replicates = ncol(genotype)
+  epsilon = matrix( 
+    rnorm(num_individuals * num_replicates, mean = 0, sd = sqrt(sig2epsi)), 
+    nrow = num_individuals, 
+    ncol = num_replicates 
+  )
+  phenotype = genotype * beta + epsilon
+  return(phenotype)
+}
+get_beta_and_sig2epsi = function(r2, sig2Y, maf) {
+  # r2: proportion of variation explained by SNP
+  # sig2Y: variance of trait
+  # maf: minor allele frequency of SNP
+  # it returns a list of beta and variance of noise term
+  
+  ## effect size is calculated as r2 = beta^2 *2*maf*(1-maf)
+  beta = sqrt( r2 * sig2Y / (2 * maf * (1 - maf)) )
+  sig2epsi = sig2Y * (1 - r2)
+  return(list(beta = beta, sig2epsi = sig2epsi))
+}
+linear_model_simulator = function(num_replicates, num_individuals, maf, r2, sig2Y) {
+  # simulate genotype
+  X = simulate_genotype(maf, num_individuals, num_replicates)
+  # calculate model parameters
+  params = get_beta_and_sig2epsi(r2, sig2Y, maf)
+  # simulate phenotype given genotype and model parameters
+  Y = simulate_phenotype(X, params$beta, params$sig2epsi)
+  return(list(Y = Y, X = X))
+}</code></pre>
+</div>
+<div id="run-the-simulator-under-the-null-and-alternative" class="section level2">
+<h2>Run the simulator under the null and alternative</h2>
+<p>Here we simulate 1000 individuals per replicate and 10000 replicates in total. With parameters:</p>
+<ul>
+<li>Minor allele frequency is 0.3.</li>
+<li>Proportion of variance explained is 0.01.</li>
+<li>Variance of trait is 1.</li>
+</ul>
+<pre class="r"><code># specify paramters
+nindiv = 1000
+nreplicate = 10000
+maf = 0.30
+r2 = 0.01
+sig2Y = 1
+
+# run simulator 
+## under the alternative
+data_alt = linear_model_simulator(nreplicate, nindiv, maf, r2, sig2Y)
+## under the null
+data_null = linear_model_simulator(nreplicate, nindiv, maf, 0, sig2Y)  </code></pre>
+</div>
+<div id="perform-hypothesis-test" class="section level2">
+<h2>Perform hypothesis test</h2>
+<p>The following chunk of R code implement hypothesis test procedure based on linear regression. Essentially, the R function <code>calcz</code> takes genotype <code>X</code> and <code>Y</code> and returns test statistic z-score.</p>
 <pre class="r"><code>runassoc = function(X,Y)
 {
   pvec = rep(NA,ncol(X))
@@ -732,54 +788,15 @@ calcz = function(X,Y)
   tempo = runassoc(X,Y)
   p2z(tempo$bvec,tempo$pvec)
 }</code></pre>
-</div>
-<div id="calculate-test-statistics-under-the-null-and-alternative" class="section level2">
-<h2>calculate test statistics under the null and alternative</h2>
-<pre class="r"><code>Zalt = calcz(simp$Xmat, simp$Yalt)
-Znull = calcz(simp$Xmat, simp$Ynull)
+<p>Now that we can calculate test statistics under the null and alternative.</p>
+<pre class="r"><code>Zalt = calcz(data_alt$X, data_alt$Y)
+Znull = calcz(data_null$X, data_null$Y)
 
 tibble(Y = c(Zalt,Znull), type=c(rep(&quot;alt&quot;,length(Zalt)),rep(&quot;null&quot;,length(Znull))) ) %&gt;% ggplot(aes(Y,fill=type)) + geom_density(color=NA,alpha=0.6) + theme_bw(base_size = 15)</code></pre>
-<p><img src="figure/L4-power.Rmd/calc%20test%20statistic%20under%20null%20and%20alt-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-calc test statistic under null and alt-1">
-Past versions of calc test statistic under null and alt-1.png
-</button>
-</p>
-<div id="fig-calc test statistic under null and alt-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/hakyimlab/hgen471/blob/8eeb0857860833a13976a3c5bea870e795a5e5fb/docs/figure/L4-power.Rmd/calc test statistic under null and alt-1.png" target="_blank">8eeb085</a>
-</td>
-<td>
-Hae Kyung Im
-</td>
-<td>
-2020-01-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/L4-power.Rmd/calc_test_statistic-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="calculate-power" class="section level2">
-<h2>calculate power</h2>
+<h2>Calculate power</h2>
 <pre class="r"><code>## define significance level
 
 alpha = 0.01
@@ -791,13 +808,13 @@ threshold = quantile(Znull, 1 - alpha/2)
 ## calculate proportion of Zalt above threshold
 
 mean(Zalt &gt; threshold)</code></pre>
-<pre><code>[1] 0.7341</code></pre>
+<pre><code>[1] 0.7337</code></pre>
 </div>
 <div id="check-with-pwr.r.test-function" class="section level2">
 <h2>check with pwr.r.test function</h2>
 <pre class="r"><code>## install.packages(&quot;pwr&quot;)
  library(pwr)
-pwr.r.test(n=nsam, r= sqrt(r2), sig.level = alpha)</code></pre>
+pwr.r.test(n = nindiv, r= sqrt(r2), sig.level = alpha)</code></pre>
 <pre><code>
      approximate correlation power calculation (arctangh transformation) 
 
@@ -814,9 +831,9 @@ pwr.r.test(n=nsam, r= sqrt(r2), sig.level = alpha)</code></pre>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.6.0 (2019-04-26)
+<pre><code>R version 3.6.2 (2019-12-12)
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS Mojave 10.14.6
+Running under: macOS High Sierra 10.13.6
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
@@ -829,24 +846,26 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] pwr_1.2-2       forcats_0.4.0   stringr_1.4.0   dplyr_0.8.1    
- [5] purrr_0.3.2     readr_1.3.1     tidyr_0.8.3     tibble_2.1.2   
- [9] ggplot2_3.1.1   tidyverse_1.2.1
+ [1] pwr_1.2-2       forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3    
+ [5] purrr_0.3.3     readr_1.3.1     tidyr_1.0.0     tibble_2.1.3   
+ [9] ggplot2_3.2.1   tidyverse_1.3.0 workflowr_1.6.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.2       cellranger_1.1.0 plyr_1.8.4       pillar_1.4.1    
- [5] compiler_3.6.0   git2r_0.25.2     workflowr_1.3.0  tools_3.6.0     
- [9] digest_0.6.19    lubridate_1.7.4  jsonlite_1.6     evaluate_0.14   
-[13] nlme_3.1-139     gtable_0.3.0     lattice_0.20-38  pkgconfig_2.0.2 
-[17] rlang_0.4.1      cli_1.1.0        rstudioapi_0.10  yaml_2.2.0      
-[21] haven_2.1.0      xfun_0.7         withr_2.1.2      xml2_1.2.0      
-[25] httr_1.4.0       knitr_1.23       hms_0.4.2        generics_0.0.2  
-[29] fs_1.3.1         rprojroot_1.3-2  grid_3.6.0       tidyselect_0.2.5
-[33] glue_1.3.1       R6_2.4.0         readxl_1.3.1     rmarkdown_1.13  
-[37] modelr_0.1.4     magrittr_1.5     whisker_0.3-2    backports_1.1.4 
-[41] scales_1.0.0     htmltools_0.4.0  rvest_0.3.4      assertthat_0.2.1
-[45] colorspace_1.4-1 labeling_0.3     stringi_1.4.3    lazyeval_0.2.2  
-[49] munsell_0.5.0    broom_0.5.2      crayon_1.3.4    </code></pre>
+ [1] tidyselect_0.2.5 xfun_0.11        haven_2.2.0      lattice_0.20-38 
+ [5] colorspace_1.4-1 vctrs_0.2.1      generics_0.0.2   htmltools_0.4.0 
+ [9] yaml_2.2.0       rlang_0.4.2      later_1.0.0      pillar_1.4.3    
+[13] withr_2.1.2      glue_1.3.1       DBI_1.1.0        dbplyr_1.4.2    
+[17] modelr_0.1.5     readxl_1.3.1     lifecycle_0.1.0  munsell_0.5.0   
+[21] gtable_0.3.0     cellranger_1.1.0 rvest_0.3.5      evaluate_0.14   
+[25] labeling_0.3     knitr_1.26       httpuv_1.5.2     fansi_0.4.0     
+[29] broom_0.5.3      Rcpp_1.0.3       promises_1.1.0   backports_1.1.5 
+[33] scales_1.1.0     jsonlite_1.6     farver_2.0.1     fs_1.3.1        
+[37] hms_0.5.3        digest_0.6.23    stringi_1.4.3    grid_3.6.2      
+[41] rprojroot_1.3-2  cli_2.0.0        tools_3.6.2      magrittr_1.5    
+[45] lazyeval_0.2.2   crayon_1.3.4     whisker_0.4      pkgconfig_2.0.3 
+[49] zeallot_0.1.0    xml2_1.2.2       reprex_0.3.0     lubridate_1.7.4 
+[53] rstudioapi_0.10  assertthat_0.2.1 rmarkdown_2.0    httr_1.4.1      
+[57] R6_2.4.1         nlme_3.1-143     git2r_0.26.1     compiler_3.6.2  </code></pre>
 </div>
 </div>
 
@@ -880,6 +899,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
