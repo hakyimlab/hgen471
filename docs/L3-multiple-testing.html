@@ -524,10 +524,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treeed556cf9fd8758781ac01adfbb0a95a7d3d2ba28targetblanked556cfa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/ed556cf9fd8758781ac01adfbb0a95a7d3d2ba28" target="_blank">ed556cf</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treebee3a3185495cf0b8634505616cd27c457d0c85btargetblankbee3a31a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/bee3a3185495cf0b8634505616cd27c457d0c85b" target="_blank">bee3a31</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treeed556cf9fd8758781ac01adfbb0a95a7d3d2ba28targetblanked556cfa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treebee3a3185495cf0b8634505616cd27c457d0c85btargetblankbee3a31a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -538,12 +538,6 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    docs/.DS_Store
-
-Untracked files:
-    Untracked:  analysis/L3-Bonferroni.Rmd
-    Untracked:  analysis/L4-power.Rmd
-    Untracked:  docs/figure/L3-Bonferroni.Rmd/
-    Untracked:  docs/figure/L4-power.Rmd/
 
 </code></pre>
 <p>
@@ -582,6 +576,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hakyimlab/hgen471/63bbad70ab03f5fc925149f33cec13db771c77ab/docs/L3-multiple-testing.html" target="_blank">63bbad7</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -748,12 +759,12 @@ null p winners curse
   [.quosures     rlang
   c.quosures     rlang
   print.quosures rlang</code></pre>
-<pre><code>── Attaching packages ───────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>── Attaching packages ────────────────────────────── tidyverse 1.2.1 ──</code></pre>
 <pre><code>✔ ggplot2 3.1.1     ✔ purrr   0.3.2
 ✔ tibble  2.1.2     ✔ dplyr   0.8.1
 ✔ tidyr   0.8.3     ✔ stringr 1.4.0
 ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>── Conflicts ──────────────────────────────── tidyverse_conflicts() ──
+<pre><code>── Conflicts ───────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>fastlm = function(xx,yy)
@@ -903,29 +914,10 @@ hakyimlab
 </table>
 </div>
 </div>
-<!-- ## show p(null) has uniform distribution when phenotype Y is unrelated to genotype X -->
-<!-- ```{r pvalue distribution} -->
-<!-- nsim = 100000 -->
-<!-- nsam = 100 -->
-<!-- maf = 0.30 -->
-<!-- Xfather = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim ) -->
-<!-- Xmother = matrix( rbinom(nsam * nsim,1,maf), nsam, nsim ) -->
-<!-- Xboth = Xfather+ Xmother -->
-<!-- Y = matrix( rnorm(nsam)) -->
-<!-- pvec = rep(NA,nsim) -->
-<!-- bvec = rep(NA,nsim) -->
-<!-- for(ss in 1:nsim) -->
-<!-- { -->
-<!--   fit = fastlm(Xboth[,ss], Y) -->
-<!--   pvec[ss] = fit$pval   -->
-<!--   bvec[ss] = fit$betahat -->
-<!-- } -->
-<!-- hist(pvec,xlab="p-value",main="Histogram of p-values under Null") -->
-<!-- ``` -->
 </div>
 <div id="simulate-a-gwas-data-under-null-no-assoc-between-x-and-y" class="section level2">
 <h2>simulate a GWAS data under null (no assoc between X and Y)</h2>
-<pre class="r"><code>nsnp = 10000
+<pre class="r"><code>nsnp = 1000000
 nsam = 1000
 maf = 0.30
 
@@ -958,11 +950,85 @@ for(ss in 1:nsnp)
 
 hist(pvec,xlab=&quot;p-value&quot;,main=&quot;Histogram of p-values under Null&quot;)</code></pre>
 <p><img src="figure/L3-multiple-testing.Rmd/run%20GWAS-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-run GWAS-1">
+Past versions of run GWAS-1.png
+</button>
+</p>
+<div id="fig-run GWAS-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/63bbad70ab03f5fc925149f33cec13db771c77ab/docs/figure/L3-multiple-testing.Rmd/run GWAS-1.png" target="_blank">63bbad7</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="show-qqplot-against-expected-null" class="section level2">
 <h2>show qqplot against expected null</h2>
 <pre class="r"><code>qqunif(pvec)</code></pre>
 <p><img src="figure/L3-multiple-testing.Rmd/qqplot%20against%20expected%20null-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-qqplot against expected null-1">
+Past versions of qqplot against expected null-1.png
+</button>
+</p>
+<div id="fig-qqplot against expected null-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/63bbad70ab03f5fc925149f33cec13db771c77ab/docs/figure/L3-multiple-testing.Rmd/qqplot against expected null-1.png" target="_blank">63bbad7</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="what-does-the-most-significant-association-look-like" class="section level2">
 <h2>what does the most significant association look like</h2>
@@ -972,6 +1038,43 @@ boxplot(simu$Y ~ simu$X[,ind])
 
 points(jitter(simu$X[,ind]), simu$Y, type=&quot;p&quot;)</code></pre>
 <p><img src="figure/L3-multiple-testing.Rmd/most%20significant%20assoc%20null-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-most significant assoc null-1">
+Past versions of most significant assoc null-1.png
+</button>
+</p>
+<div id="fig-most significant assoc null-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/63bbad70ab03f5fc925149f33cec13db771c77ab/docs/figure/L3-multiple-testing.Rmd/most significant assoc null-1.png" target="_blank">63bbad7</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="example-of-winners-curse-even-when-effect-size-is-0-we-get-larger-when-we-select-significant-snps" class="section level2">
 <h2>example of winner’s curse (even when effect size is 0, we get larger when we select significant SNPs)</h2>
@@ -981,6 +1084,43 @@ df = tibble(effect = c(bvec[ind],bvec), type = c(rep(&quot;signif&quot;,length(i
 
 ggplot(df, aes(abs(effect), fill=type)) + geom_density(alpha = 0.6, color=NA) + theme_bw(base_size = 15) + ggtitle(&quot;Winner&#39;s curse&quot;)</code></pre>
 <p><img src="figure/L3-multiple-testing.Rmd/winners%20curse-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-winners curse-1">
+Past versions of winners curse-1.png
+</button>
+</p>
+<div id="fig-winners curse-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/63bbad70ab03f5fc925149f33cec13db771c77ab/docs/figure/L3-multiple-testing.Rmd/winners curse-1.png" target="_blank">63bbad7</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
