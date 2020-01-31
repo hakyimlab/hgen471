@@ -76,6 +76,15 @@ plink --file hapmap3_r3_b36_fwd.consensus.qc.poly --make-bed --chr 22 --out hapm
 wget https://www.dropbox.com/s/yozrzsdrwqej63q/phase3_corrected.psam?dl=1 
 mv phase3_corrected.psam\?dl\=1 phase3_corrected.psam
 
+## problems with zsh in Catalina to download dropbox link
+## zsh: no matches found: 
+## https://www.dropbox.com/s/yozrzsdrwqej63q/phase3_corrected.psam?dl=1
+## problems downloading data from dropbox
+## https://www.bartbusschots.ie/s/2019/06/12/bash-to-zsh-file-globbing-and-no-matches-found-errors/
+## setopt NULL_GLOB
+## This doesn't work
+## This worked: pasted the dropbox link on browser url and downloaded fine
+
 ```
 
 **Calculate Fst among populations**

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Hae Kyung Im" />
@@ -90,7 +91,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -251,48 +251,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -306,6 +267,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -445,17 +412,17 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-01-27
+<strong>Last updated:</strong> 2020-01-30
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>hgen471/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.5.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -469,7 +436,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -493,7 +460,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20200105code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20200105)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20200105)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -524,10 +491,22 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471tree8076d4a9700b3db6d3dbe76887c20bf6c2efa9d6targetblank8076d4aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/8076d4a9700b3db6d3dbe76887c20bf6c2efa9d6" target="_blank">8076d4a</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471tree8076d4a9700b3db6d3dbe76887c20bf6c2efa9d6targetblank8076d4aa" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treee73a3292c134fc6f8b8ef51441c98918db7a35e9targetblanke73a329a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/e73a3292c134fc6f8b8ef51441c98918db7a35e9" target="_blank">e73a329</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treee73a3292c134fc6f8b8ef51441c98918db7a35e9targetblanke73a329a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -537,17 +516,11 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    docs/.DS_Store
-
-Untracked files:
-    Untracked:  analysis/L6-download-data.Rmd
-    Untracked:  analysis/L6-population-structure.Rmd
-    Untracked:  docs/figure/L6-population-structure.Rmd/
-    Untracked:  output/igrowth-adjPC.assoc.linear
-    Untracked:  output/igrowth-adjPC.log
+    Ignored:    analysis/.Rhistory
 
 Unstaged changes:
-    Modified:   analysis/L3-multiple-testing.Rmd
+    Modified:   analysis/L6-download-data.Rmd
+    Modified:   analysis/L6-population-structure.Rmd
 
 </code></pre>
 <p>
@@ -560,25 +533,80 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/analysis/L6-population-structure.Rmd" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+<td>
+L6 examples
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hakyimlab/hgen471/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/L6-population-structure.html" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+<td>
+L6 examples
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
 </div>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>Registered S3 methods overwritten by &#39;ggplot2&#39;:
-  method         from 
-  [.quosures     rlang
-  c.quosures     rlang
-  print.quosures rlang</code></pre>
-<pre><code>── Attaching packages ─────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>✔ ggplot2 3.1.1     ✔ purrr   0.3.2
-✔ tibble  2.1.2     ✔ dplyr   0.8.1
-✔ tidyr   0.8.3     ✔ stringr 1.4.0
+<pre><code>── Attaching packages ─────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>✔ ggplot2 3.2.1     ✔ purrr   0.3.3
+✔ tibble  2.1.3     ✔ dplyr   0.8.3
+✔ tidyr   1.0.0     ✔ stringr 1.4.0
 ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>── Conflicts ────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>── Conflicts ────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>work.dir =&quot;~/Downloads/hapmap/&quot;
@@ -631,21 +659,174 @@ system(glue::glue(&quot;~/bin/plink --bfile {work.dir}hapmapch22 --hardy --out {
 allhwe = read.table(glue::glue(&quot;{work.dir}output/allhwe.hwe&quot;),header=TRUE,as.is=TRUE)
 hist(allhwe$P)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20all%20populations-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-hardy-weinberg-all-populations-1">
+Past versions of “hardy weinberg all populations-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-hardy-weinberg-all-populations-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/hardy weinberg all populations-1.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>qqunif(allhwe$P,main=&#39;HWE HapMap3 All Pop&#39;)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20all%20populations-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-hardy-weinberg-all-populations-2">
+Past versions of “hardy weinberg all populations-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-hardy-weinberg-all-populations-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/hardy weinberg all populations-2.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><strong>What if we calculate with single population?</strong></p>
 <pre class="r"><code>pop = &quot;CHB&quot;
 pop = &quot;CEU&quot;
 pop = &quot;YRI&quot;
 
-## what if we calculate with single population?
-popinfo %&gt;% filter(population==pop) %&gt;% write_tsv(path=glue::glue(&quot;{work.dir}{pop}.fam&quot;) )
-system(glue::glue(&quot;~/bin/plink --bfile {work.dir}hapmapch22 --hardy --keep {work.dir}{pop}.fam --out {work.dir}output/hwe-{pop}&quot;))
-pophwe = read.table(glue::glue(&quot;{work.dir}output/hwe-{pop}.hwe&quot;),header=TRUE,as.is=TRUE)
-hist(pophwe$P,main=glue::glue(&quot;HWE {pop} and founders only&quot;))</code></pre>
+for(pop in c(&quot;CHB&quot;,&quot;CEU&quot;,&quot;YRI&quot;))
+{
+  ## what if we calculate with single population?
+  popinfo %&gt;% filter(population==pop) %&gt;%
+    write_tsv(path=glue::glue(&quot;{work.dir}{pop}.fam&quot;) )
+  system(glue::glue(&quot;~/bin/plink --bfile {work.dir}hapmapch22 --hardy --keep {work.dir}{pop}.fam --out {work.dir}output/hwe-{pop}&quot;))
+  pophwe = read.table(glue::glue(&quot;{work.dir}output/hwe-{pop}.hwe&quot;),header=TRUE,as.is=TRUE)
+  hist(pophwe$P,main=glue::glue(&quot;HWE {pop} and founders only&quot;))
+  qqunif(pophwe$P,main=glue::glue(&quot;HWE {pop} and founders only&quot;))
+}</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20single%20population-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>qqunif(pophwe$P,main=glue::glue(&quot;HWE {pop} and founders only&quot;))</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-hardy-weinberg-single-population-1">
+Past versions of “hardy weinberg single population-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-hardy-weinberg-single-population-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/hardy weinberg single population-1.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20single%20population-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-hardy-weinberg-single-population-2">
+Past versions of “hardy weinberg single population-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-hardy-weinberg-single-population-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/hardy weinberg single population-2.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20single%20population-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20single%20population-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20single%20population-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20single%20population-6.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>## not much difference when --nonfounders option is added</code></pre>
 <p><strong>What if we add non founders?</strong> Some of the samples in HapMap were recruited from families.</p>
 <pre class="r"><code>## what if we add nonfounders?
@@ -653,10 +834,121 @@ system(glue::glue(&quot;~/bin/plink --bfile {work.dir}hapmapch22 --hardy --keep 
 CEUhwe_nf = read.table(glue::glue(&quot;{work.dir}output/CEUhwe_nf.hwe&quot;),header=TRUE,as.is=TRUE)
 hist(CEUhwe_nf$P,main=&quot;HWE CEU + non founders&quot;)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20including%20non%20founders-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-hardy-weinberg-including-non-founders-1">
+Past versions of “hardy weinberg including non founders-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-hardy-weinberg-including-non-founders-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/hardy weinberg including non founders-1.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>qqunif(CEUhwe_nf$P,main=&quot;HWE CEU + non founders&quot;)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20including%20non%20founders-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-hardy-weinberg-including-non-founders-2">
+Past versions of “hardy weinberg including non founders-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-hardy-weinberg-including-non-founders-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/hardy weinberg including non founders-2.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>qqplot(-log10(CEUhwe_nf$P),-log10(CEUhwe_nf$P),main=&quot;all vs founders only&quot; );abline(0,1) </code></pre>
 <p><img src="figure/L6-population-structure.Rmd/hardy%20weinberg%20including%20non%20founders-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-hardy-weinberg-including-non-founders-3">
+Past versions of “hardy weinberg including non founders-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-hardy-weinberg-including-non-founders-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/hardy weinberg including non founders-3.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><strong>GWAS on a growth phenotype in HapMap samples</strong></p>
 <pre class="r"><code>## read igrowth
 igrowth = read_tsv(&quot;https://raw.githubusercontent.com/hakyimlab/igrowth/master/rawgrowth.txt&quot;)</code></pre>
@@ -677,6 +969,43 @@ igrowth %&gt;% ggplot(aes(population,growth)) + geom_violin(aes(fill=population)
 <pre><code>Warning: Removed 130 rows containing non-finite values (stat_ydensity).</code></pre>
 <pre><code>Warning: Removed 130 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/intrinsic%20growth%20phenotype%20GWAS-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-intrinsic-growth-phenotype-GWAS-1">
+Past versions of “intrinsic growth phenotype GWAS-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-intrinsic-growth-phenotype-GWAS-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/intrinsic growth phenotype GWAS-1.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>summary( lm(growth~population,data=igrowth) )</code></pre>
 <pre><code>
 Call:
@@ -704,9 +1033,84 @@ F-statistic: 32.08 on 4 and 3591 DF,  p-value: &lt; 2.2e-16</code></pre>
 igrowth.assoc = read.table(glue::glue(&quot;{work.dir}output/igrowth.assoc.linear&quot;),header=T,as.is=T)
 hist(igrowth.assoc$P)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/intrinsic%20growth%20phenotype%20GWAS-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-intrinsic-growth-phenotype-GWAS-2">
+Past versions of “intrinsic growth phenotype GWAS-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-intrinsic-growth-phenotype-GWAS-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/intrinsic growth phenotype GWAS-2.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>qqunif(igrowth.assoc$P)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/intrinsic%20growth%20phenotype%20GWAS-3.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>library(qqman)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-intrinsic-growth-phenotype-GWAS-3">
+Past versions of “intrinsic growth phenotype GWAS-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-intrinsic-growth-phenotype-GWAS-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/intrinsic growth phenotype GWAS-3.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>## install.packages(&quot;qqman&quot;)
+library(qqman)</code></pre>
 <pre><code></code></pre>
 <pre><code>For example usage please run: vignette(&#39;qqman&#39;)</code></pre>
 <pre><code></code></pre>
@@ -715,6 +1119,43 @@ hist(igrowth.assoc$P)</code></pre>
 <pre><code></code></pre>
 <pre class="r"><code>manhattan(igrowth.assoc, chr=&quot;CHR&quot;, bp=&quot;BP&quot;, snp=&quot;SNP&quot;, p=&quot;P&quot; )</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/intrinsic%20growth%20phenotype%20GWAS-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-intrinsic-growth-phenotype-GWAS-4">
+Past versions of “intrinsic growth phenotype GWAS-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-intrinsic-growth-phenotype-GWAS-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/intrinsic growth phenotype GWAS-4.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><strong>Simulate phenotype</strong></p>
 <pre class="r"><code>set.seed(10) ## to get the same simulated values each time
 simpheno = popinfo %&gt;% mutate(pheno=rnorm(nrow(popinfo)))
@@ -724,10 +1165,121 @@ system(glue::glue(&quot;~/bin/plink --bfile {work.dir}hapmapch22 --linear --phen
 simpheno.assoc = read.table(glue::glue(&quot;{work.dir}output/simpheno.assoc.linear&quot;),header=T,as.is=T)
 hist(simpheno.assoc$P)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/simulated%20phenotype-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-simulated-phenotype-1">
+Past versions of “simulated phenotype-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-simulated-phenotype-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/simulated phenotype-1.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>qqunif(simpheno.assoc$P)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/simulated%20phenotype-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-simulated-phenotype-2">
+Past versions of “simulated phenotype-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-simulated-phenotype-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/simulated phenotype-2.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>manhattan(simpheno.assoc, chr=&quot;CHR&quot;, bp=&quot;BP&quot;, snp=&quot;SNP&quot;, p=&quot;P&quot; )</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/simulated%20phenotype-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-simulated-phenotype-3">
+Past versions of “simulated phenotype-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-simulated-phenotype-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/simulated phenotype-3.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><strong>PCA calculation using plink</strong></p>
 <pre class="r"><code>## generate PCs using plink
 system(glue::glue(&quot;~/bin/plink --bfile {work.dir}hapmapch22 --pca --out {work.dir}output/pca&quot;))
@@ -739,17 +1291,172 @@ pcplink = popinfo %&gt;% left_join(superpop,by=c(&quot;population&quot;=&quot;Po
 ## plot PC1 vs PC2
 pcplink %&gt;% ggplot(aes(PC1,PC2,col=population,shape=SuperPop)) + geom_point(size=3,alpha=.7) + theme_bw(base_size = 15)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/PCA%20calculation-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-PCA-calculation-1">
+Past versions of “PCA calculation-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-PCA-calculation-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/PCA calculation-1.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>manhattan(simpheno.assoc, chr=&quot;CHR&quot;, bp=&quot;BP&quot;, snp=&quot;SNP&quot;, p=&quot;P&quot; ,main=&quot;Simulated Phenotype&quot;)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/PCA%20calculation-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-PCA-calculation-2">
+Past versions of “PCA calculation-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-PCA-calculation-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/PCA calculation-2.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><strong>runnig igrowth GWAS using PCs</strong></p>
-<pre class="r"><code>system(glue::glue(&quot;~/bin/plink --bfile {work.dir}hapmapch22 --linear --pheno {work.dir}igrowth.pheno --pheno-name growth --covar {work.dir}output/pca.eigenvec --covar-number 1-4 --maf 0.05 --out {work.dir}output/igrowth-adjPC&quot;))
-igrowth.assoc = read.table(glue::glue(&quot;{work.dir}output/igrowth-adjPC.assoc.linear&quot;),header=T,as.is=T)
-indadd = igrowth.assoc$TEST==&quot;ADD&quot;
+<pre class="r"><code>system(glue::glue(&quot;~/bin/plink --bfile {work.dir}hapmapch22 --linear --pheno {work.dir}igrowth.pheno --pheno-name growth --covar {work.dir}output/pca.eigenvec --covar-number 1-4 --hide-covar --maf 0.05 --out {work.dir}output/igrowth-adjPC&quot;))
+igrowth.adjusted.assoc = read.table(glue::glue(&quot;{work.dir}output/igrowth-adjPC.assoc.linear&quot;),header=T,as.is=T)
+##indadd = igrowth.adjusted.assoc$TEST==&quot;ADD&quot;
 titulo = &quot;igrowh association adjusted for PCs&quot;
-hist(igrowth.assoc$P[indadd],main=titulo)</code></pre>
+hist(igrowth.adjusted.assoc$P,main=titulo)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/igrowth%20GWAS%20with%20PC-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>qqunif(igrowth.assoc$P[indadd],main=titulo)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-igrowth-GWAS-with-PC-1">
+Past versions of “igrowth GWAS with PC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-igrowth-GWAS-with-PC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/igrowth GWAS with PC-1.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>qqunif(igrowth.adjusted.assoc$P,main=titulo)</code></pre>
 <p><img src="figure/L6-population-structure.Rmd/igrowth%20GWAS%20with%20PC-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-igrowth-GWAS-with-PC-2">
+Past versions of “igrowth GWAS with PC-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-igrowth-GWAS-with-PC-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/e73a3292c134fc6f8b8ef51441c98918db7a35e9/docs/figure/L6-population-structure.Rmd/igrowth GWAS with PC-2.png" target="_blank">e73a329</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-01-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong>calculate Zscores</strong></p>
+<pre class="r"><code>genomic.control = function(pvec)
+{
+ z = qnorm(pvec / 2)
+ lambda = round(median(z^2) / 0.4549, 3)
+ lambda
+}</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -758,9 +1465,9 @@ hist(igrowth.assoc$P[indadd],main=titulo)</code></pre>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.6.0 (2019-04-26)
+<pre><code>R version 3.6.1 (2019-07-05)
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS Mojave 10.14.6
+Running under: macOS Catalina 10.15.2
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
@@ -773,26 +1480,27 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] qqman_0.1.4     forcats_0.4.0   stringr_1.4.0   dplyr_0.8.1    
- [5] purrr_0.3.2     readr_1.3.1     tidyr_0.8.3     tibble_2.1.2   
- [9] ggplot2_3.1.1   tidyverse_1.2.1
+ [1] qqman_0.1.4     forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3    
+ [5] purrr_0.3.3     readr_1.3.1     tidyr_1.0.0     tibble_2.1.3   
+ [9] ggplot2_3.2.1   tidyverse_1.2.1
 
 loaded via a namespace (and not attached):
- [1] tidyselect_0.2.5 xfun_0.7         haven_2.1.0      lattice_0.20-38 
- [5] colorspace_1.4-1 generics_0.0.2   vctrs_0.1.0      htmltools_0.4.0 
- [9] yaml_2.2.0       utf8_1.1.4       rlang_0.4.1      pillar_1.4.1    
-[13] glue_1.3.1       withr_2.1.2      calibrate_1.7.5  modelr_0.1.4    
-[17] readxl_1.3.1     plyr_1.8.4       munsell_0.5.0    gtable_0.3.0    
-[21] workflowr_1.3.0  cellranger_1.1.0 rvest_0.3.4      evaluate_0.14   
-[25] labeling_0.3     knitr_1.23       curl_3.3         fansi_0.4.0     
-[29] broom_0.5.2      Rcpp_1.0.2       scales_1.0.0     backports_1.1.4 
-[33] jsonlite_1.6     fs_1.3.1         hms_0.4.2        digest_0.6.19   
-[37] stringi_1.4.3    grid_3.6.0       rprojroot_1.3-2  cli_1.1.0       
-[41] tools_3.6.0      magrittr_1.5     lazyeval_0.2.2   crayon_1.3.4    
-[45] pkgconfig_2.0.2  zeallot_0.1.0    MASS_7.3-51.4    xml2_1.2.0      
-[49] lubridate_1.7.4  assertthat_0.2.1 rmarkdown_1.13   httr_1.4.0      
-[53] rstudioapi_0.10  R6_2.4.0         nlme_3.1-139     git2r_0.25.2    
-[57] compiler_3.6.0  </code></pre>
+ [1] tidyselect_0.2.5 xfun_0.11        haven_2.2.0      lattice_0.20-38 
+ [5] colorspace_1.4-1 vctrs_0.2.0      generics_0.0.2   htmltools_0.4.0 
+ [9] yaml_2.2.0       utf8_1.1.4       rlang_0.4.1      later_1.0.0     
+[13] pillar_1.4.2     withr_2.1.2      glue_1.3.1       calibrate_1.7.5 
+[17] modelr_0.1.5     readxl_1.3.1     lifecycle_0.1.0  munsell_0.5.0   
+[21] gtable_0.3.0     workflowr_1.5.0  cellranger_1.1.0 rvest_0.3.5     
+[25] evaluate_0.14    labeling_0.3     knitr_1.26       httpuv_1.5.2    
+[29] curl_4.2         fansi_0.4.0      broom_0.5.2      Rcpp_1.0.3      
+[33] promises_1.1.0   backports_1.1.5  scales_1.1.0     jsonlite_1.6    
+[37] farver_2.0.1     fs_1.3.1         hms_0.5.2        digest_0.6.22   
+[41] stringi_1.4.3    grid_3.6.1       rprojroot_1.3-2  cli_1.1.0       
+[45] tools_3.6.1      magrittr_1.5     lazyeval_0.2.2   crayon_1.3.4    
+[49] whisker_0.4      pkgconfig_2.0.3  zeallot_0.1.0    MASS_7.3-51.4   
+[53] xml2_1.2.2       lubridate_1.7.4  assertthat_0.2.1 rmarkdown_1.17  
+[57] httr_1.4.1       rstudioapi_0.10  R6_2.4.1         nlme_3.1-142    
+[61] git2r_0.26.1     compiler_3.6.1  </code></pre>
 </div>
 
 
@@ -825,6 +1533,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
