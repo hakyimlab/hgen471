@@ -1,0 +1,53 @@
+---
+title: "L8-LD-score"
+author: "Hae Kyung Im"
+date: "2020-02-07"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## LD score
+
+```{r preliminaries}
+
+library(tidyverse)
+work.dir ="~/Downloads/ldscore/"
+
+```
+
+
+## ld score regression
+
+```{r ld-score regression}
+
+## read ld-score in chr 22 calculated by Yanyu Liang using the GTEx V8 SNP set
+
+ldscore = read.table(paste0(work.dir,"chr22.l2.ldscore.gz"),header=T,as.is=T)
+head(ldscore)
+
+## plot ldscore to get a sense of variability
+
+hist(ldscore$L2,xlab="LD Score" , main ="Histogram of LD score")
+plot(ldscore$BP, ldscore$L2,xlab="Chr 22 Position",ylab="LD Score", main = "LD Score across chr 22")
+
+ind = 1:5000; ind = ind + 10000;plot(ldscore$BP[ind], ldscore$L2[ind],xlab="Chr 22 Position",ylab="LD Score")
+
+## read GWAS result for height from the GIANT consortium (chr22 only)
+
+giant = read.table(paste0(work.dir,"gwas_giant_chr22.txt"),header=T, as.is=T)
+
+names(giant) = c("variant_id",      "panel_variant_id",        "chromosome",      "position",        "effect_allele",   "non_effect_allele",       "frequency",       "pvalue",  "zscore",  "effect_size",     "standard_error",  "sample_size",     "n_cases")
+tempo = inner_join(giant,ldscore,by=c("panel_variant_id"="SNP") )
+
+## plot Chi2 vs LD score
+
+plot(tempo$zscore^2~ tempo$L2)
+
+ggplot(tempo, aes(L2, zscore^2)) + geom_point(alpha=0.5,size=3) +geom_smooth(method="lm") 
+
+fit = lm(tempo$zscore^2~ tempo$L2)
+summary(fit)
+
+```
+
