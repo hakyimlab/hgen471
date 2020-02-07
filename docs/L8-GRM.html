@@ -13,7 +13,7 @@
 
 <meta name="date" content="2020-02-06" />
 
-<title>L8-ldscore-GRM</title>
+<title>L8 GRM shows population structure</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -418,7 +418,7 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">L8-ldscore-GRM</h1>
+<h1 class="title toc-ignore">L8 GRM shows population structure</h1>
 <h4 class="author">Hae Kyung Im</h4>
 <h4 class="date">2020-02-06</h4>
 
@@ -469,7 +469,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -524,10 +524,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treee94b3dd6a4b2adbb88c90c3cf65c1a56ac9ef265targetblanke94b3dda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/e94b3dd6a4b2adbb88c90c3cf65c1a56ac9ef265" target="_blank">e94b3dd</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471tree92e339bd615b5df6e84ac560309f1e922ab9fbc1targetblank92e339ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hakyimlab/hgen471/tree/92e339bd615b5df6e84ac560309f1e922ab9fbc1" target="_blank">92e339b</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471treee94b3dd6a4b2adbb88c90c3cf65c1a56ac9ef265targetblanke94b3dda" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhakyimlabhgen471tree92e339bd615b5df6e84ac560309f1e922ab9fbc1targetblank92e339ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -539,9 +539,8 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    docs/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/L8-GRM.Rmd
-    Untracked:  analysis/L8-LD-score.Rmd
+Unstaged changes:
+    Modified:   analysis/L8-GRM.Rmd
 
 </code></pre>
 <p>
@@ -554,9 +553,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/92e339bd615b5df6e84ac560309f1e922ab9fbc1/analysis/L8-GRM.Rmd" target="_blank">92e339b</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-02-07
+</td>
+<td>
+GRM-LD-score
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hakyimlab/hgen471/92e339bd615b5df6e84ac560309f1e922ab9fbc1/docs/L8-GRM.html" target="_blank">92e339b</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-02-07
+</td>
+<td>
+GRM-LD-score
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -626,8 +685,45 @@ ind = c(&quot;NA07349&quot;,&quot;NA07347&quot;,&quot;NA07346&quot;,&quot;NA1237
 grmat = grmgz2mat(grmhead)
 
 ## plot grmat to see the population structure
-tileplot(grmat)</code></pre>
+tileplot(grmat[ind,ind])</code></pre>
 <p><img src="figure/L8-GRM.Rmd/visualize%20pattern%20in%20GRM-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-visualize pattern in GRM-1">
+Past versions of visualize pattern in GRM-1.png
+</button>
+</p>
+<div id="fig-visualize pattern in GRM-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hakyimlab/hgen471/blob/92e339bd615b5df6e84ac560309f1e922ab9fbc1/docs/figure/L8-GRM.Rmd/visualize pattern in GRM-1.png" target="_blank">92e339b</a>
+</td>
+<td>
+Hae Kyung Im
+</td>
+<td>
+2020-02-07
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -665,10 +761,10 @@ loaded via a namespace (and not attached):
 [25] httr_1.4.0       knitr_1.23       hms_0.4.2        generics_0.0.2  
 [29] fs_1.3.1         rprojroot_1.3-2  grid_3.6.0       tidyselect_0.2.5
 [33] glue_1.3.1       R6_2.4.0         readxl_1.3.1     rmarkdown_1.13  
-[37] modelr_0.1.4     magrittr_1.5     backports_1.1.4  scales_1.0.0    
-[41] htmltools_0.4.0  rvest_0.3.4      assertthat_0.2.1 colorspace_1.4-1
-[45] labeling_0.3     stringi_1.4.3    lazyeval_0.2.2   munsell_0.5.0   
-[49] broom_0.5.2      crayon_1.3.4    </code></pre>
+[37] modelr_0.1.4     magrittr_1.5     whisker_0.3-2    backports_1.1.4 
+[41] scales_1.0.0     htmltools_0.4.0  rvest_0.3.4      assertthat_0.2.1
+[45] colorspace_1.4-1 labeling_0.3     stringi_1.4.3    lazyeval_0.2.2  
+[49] munsell_0.5.0    broom_0.5.2      crayon_1.3.4    </code></pre>
 </div>
 </div>
 

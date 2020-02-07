@@ -70,7 +70,7 @@ ind = c("NA07349","NA07347","NA07346","NA12376","NA12546","NA12489",
 grmat = grmgz2mat(grmhead)
 
 ## plot grmat to see the population structure
-tileplot(grmat)
+tileplot(grmat[ind,ind])
 
 ```
 
