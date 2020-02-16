@@ -1,0 +1,140 @@
+---
+title: "L6-population-structure"
+author: "Hae Kyung Im"
+date: "2020-01-26"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r preliminaries}
+library(tidyverse)
+work.dir ="~/Downloads/hapmap/"
+
+## qqunif function
+source("https://gist.githubusercontent.com/hakyim/38431b74c6c0bf90c12f/raw/21fbae9a48dc475f42fa60f0ef5509d071dea873/qqunif")
+```
+
+*What's the population composition?**
+```{r population composition}
+popinfo = read_tsv(paste0(work.dir,"relationships_w_pops_051208.txt"))
+popinfo %>% count(population)
+
+samdata = read_tsv(paste0(work.dir,"phase3_corrected.psam"),guess_max = 2500) 
+superpop = samdata %>% select(SuperPop,Population) %>% unique()
+
+superpop = rbind(superpop, data.frame(SuperPop=c("EAS","HIS","AFR"),Population=c("CHD","MEX","MKK")))
+
+```
+
+**Effect of population structure in Hardy Weinberg**
+```{r hardy weinberg all populations}
+## what happens if we calculate HWE with this mixed population?
+system(glue::glue("~/bin/plink --bfile {work.dir}hapmapch22 --hardy --out {work.dir}output/allhwe"))
+allhwe = read.table(glue::glue("{work.dir}output/allhwe.hwe"),header=TRUE,as.is=TRUE)
+hist(allhwe$P)
+qqunif(allhwe$P,main='HWE HapMap3 All Pop')
+```
+
+**What if we calculate with single population?**
+```{r hardy weinberg single population}
+
+pop = "CHB"
+pop = "CEU"
+pop = "YRI"
+
+for(pop in c("CHB","CEU","YRI"))
+{
+  ## what if we calculate with single population?
+  popinfo %>% filter(population==pop) %>%
+    write_tsv(path=glue::glue("{work.dir}{pop}.fam") )
+  system(glue::glue("~/bin/plink --bfile {work.dir}hapmapch22 --hardy --keep {work.dir}{pop}.fam --out {work.dir}output/hwe-{pop}"))
+  pophwe = read.table(glue::glue("{work.dir}output/hwe-{pop}.hwe"),header=TRUE,as.is=TRUE)
+  hist(pophwe$P,main=glue::glue("HWE {pop} and founders only"))
+  qqunif(pophwe$P,main=glue::glue("HWE {pop} and founders only"))
+}
+## not much difference when --nonfounders option is added
+
+```
+
+**What if we add non founders?**
+Some of the samples in HapMap were recruited from families. 
+```{r hardy weinberg including non founders}
+## what if we add nonfounders?
+system(glue::glue("~/bin/plink --bfile {work.dir}hapmapch22 --hardy --keep {work.dir}CEU.fam --nonfounders --out {work.dir}output/CEUhwe_nf"))
+CEUhwe_nf = read.table(glue::glue("{work.dir}output/CEUhwe_nf.hwe"),header=TRUE,as.is=TRUE)
+hist(CEUhwe_nf$P,main="HWE CEU + non founders")
+qqunif(CEUhwe_nf$P,main="HWE CEU + non founders")
+qqplot(-log10(CEUhwe_nf$P),-log10(CEUhwe_nf$P),main="all vs founders only" );abline(0,1) 
+```
+
+**GWAS on a growth phenotype in HapMap samples**
+```{r intrinsic growth phenotype GWAS}
+## read igrowth
+igrowth = read_tsv("https://raw.githubusercontent.com/hakyimlab/igrowth/master/rawgrowth.txt")
+## fix FID from igrowth file
+igrowth = popinfo %>% select(-pheno) %>% inner_join(igrowth %>% select(IID,growth), by=c("IID"="IID"))
+write_tsv(igrowth,path=glue::glue("{work.dir}igrowth.pheno"))
+igrowth %>% ggplot(aes(population,growth)) + geom_violin(aes(fill=population)) + geom_boxplot(width=0.2,col='black',fill='gray',alpha=.8) + theme_bw(base_size = 15)
+summary( lm(growth~population,data=igrowth) )
+system(glue::glue("~/bin/plink --bfile {work.dir}hapmapch22 --linear --pheno {work.dir}igrowth.pheno --pheno-name growth --maf 0.05 --out {work.dir}output/igrowth"))
+igrowth.assoc = read.table(glue::glue("{work.dir}output/igrowth.assoc.linear"),header=T,as.is=T)
+hist(igrowth.assoc$P)
+qqunif(igrowth.assoc$P)
+## install.packages("qqman")
+library(qqman)
+manhattan(igrowth.assoc, chr="CHR", bp="BP", snp="SNP", p="P" )
+```
+
+**Simulate phenotype**
+```{r simulated phenotype}
+set.seed(10) ## to get the same simulated values each time
+simpheno = popinfo %>% mutate(pheno=rnorm(nrow(popinfo)))
+write_tsv(simpheno, path=glue::glue("{work.dir}sim.pheno"))
+## run association with plink
+system(glue::glue("~/bin/plink --bfile {work.dir}hapmapch22 --linear --pheno {work.dir}sim.pheno --pheno-name pheno --maf 0.05 --out {work.dir}output/simpheno") )
+simpheno.assoc = read.table(glue::glue("{work.dir}output/simpheno.assoc.linear"),header=T,as.is=T)
+hist(simpheno.assoc$P)
+qqunif(simpheno.assoc$P)
+manhattan(simpheno.assoc, chr="CHR", bp="BP", snp="SNP", p="P" )
+
+```
+
+**PCA calculation using plink**
+```{r PCA calculation}
+## generate PCs using plink
+system(glue::glue("~/bin/plink --bfile {work.dir}hapmapch22 --pca --out {work.dir}output/pca"))
+## read plink calculated PCs
+pcplink = read.table(glue::glue("{work.dir}output/pca.eigenvec"),header=F, as.is=T)
+names(pcplink) = c("FID","IID",paste0("PC", c(1:(ncol(pcplink)-2))) )
+pcplink = popinfo %>% left_join(superpop,by=c("population"="Population")) %>% inner_join(pcplink, by=c("FID"="FID", "IID"="IID"))
+
+## plot PC1 vs PC2
+pcplink %>% ggplot(aes(PC1,PC2,col=population,shape=SuperPop)) + geom_point(size=3,alpha=.7) + theme_bw(base_size = 15)
+manhattan(simpheno.assoc, chr="CHR", bp="BP", snp="SNP", p="P" ,main="Simulated Phenotype")
+```
+
+**runnig igrowth GWAS using PCs**
+```{r igrowth GWAS with PC}
+system(glue::glue("~/bin/plink --bfile {work.dir}hapmapch22 --linear --pheno {work.dir}igrowth.pheno --pheno-name growth --covar {work.dir}output/pca.eigenvec --covar-number 1-4 --hide-covar --maf 0.05 --out {work.dir}output/igrowth-adjPC"))
+igrowth.adjusted.assoc = read.table(glue::glue("{work.dir}output/igrowth-adjPC.assoc.linear"),header=T,as.is=T)
+##indadd = igrowth.adjusted.assoc$TEST=="ADD"
+titulo = "igrowh association adjusted for PCs"
+hist(igrowth.adjusted.assoc$P,main=titulo)
+qqunif(igrowth.adjusted.assoc$P,main=titulo)
+```
+
+**calculate Zscores**
+```{r}
+
+genomic.control = function(pvec)
+{
+ z = qnorm(pvec / 2)
+ lambda = round(median(z^2) / 0.4549, 3)
+ lambda
+}
+
+
+
+```
+

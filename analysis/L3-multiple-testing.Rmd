@@ -115,7 +115,7 @@ abline(h=1,col='gray')
 
 ```{r simulate GWAS data}
 
-nsnp = 1000000
+nsnp = 1000000  
 nsam = 1000
 maf = 0.30
 

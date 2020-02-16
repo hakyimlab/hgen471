@@ -1,0 +1,128 @@
+---
+title: "L6-download-hapmap3-data"
+author: "Hae Kyung Im"
+date: "2020-01-26"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Getting data
+```{r, eval=FALSE}
+library(tidyverse)
+work.dir ="~/Downloads/hapmap/"
+
+## qqunif function
+source("https://gist.githubusercontent.com/hakyim/38431b74c6c0bf90c12f/raw/21fbae9a48dc475f42fa60f0ef5509d071dea873/qqunif")
+```
+
+**Download plink for mac**
+```{r, engine='bash', eval=FALSE}
+
+## Download plink from https://www.cog-genomics.org/plink2
+## wget http://s3.amazonaws.com/plink1-assets/plink_mac_20200121.zip
+
+
+## TODO: move plink executable to ~/bin/ 
+## add to the path if necessary
+## export PATH="$PATH:~/bin/"
+
+```
+
+**Download HapMap data**
+```{r, engine='bash', eval=FALSE}
+
+refdir=~/Downloads/hapmap
+mkdir $refdir
+cd $refdir
+
+mkdir output
+
+## Download plink format hapmap 3 genotype data
+## http://www.sanger.ac.uk/resources/downloads/human/hapmap3.html
+wget -r ftp://ftp.ncbi.nlm.nih.gov/hapmap/genotypes/2010-05_phaseIII/plink_format/ (This also downloads tar-ed individual population ped/map files)
+##wget ftp://ftp.ncbi.nlm.nih.gov/hapmap/genotypes/2010-05_phaseIII/plink_format/hapmap3_r3_b36_fwd.consensus.qc.poly.map
+##wget ftp://ftp.ncbi.nlm.nih.gov/hapmap/genotypes/2010-05_phaseIII/plink_format/hapmap3_r3_b36_fwd.consensus.qc.poly.ped
+# FINISHED --2018-01-26 10:46:48--
+# Total wall clock time: 3m 56s
+# Downloaded: 4 files, 2.5G in 3m 56s (10.9 MB/s)
+## remove annoying DS_Store files in OSX
+## find . -name '.DS_Store' |xargs rm
+## Mac OSX needs command line toos + homebrew installed. 
+## then run 
+## brew update
+## brew install wget
+## cd and use tabs to get to subfolder where gz files are
+
+mv ftp.ncbi.nlm.nih.gov/hapmap/genotypes/2010-05_phaseIII/plink_format/* $refdir
+rm -rf ftp.ncbi*
+gunzip *.gz
+```
+
+**Download population data**
+```{r, engine='bash', eval=FALSE}
+
+## get reported population data
+wget ftp://ftp.ncbi.nlm.nih.gov/hapmap/phase_3/relationships_w_pops_051208.txt
+
+```
+
+**Create small bed/bim/fam file **
+```{r, engine='bash', eval=FALSE}
+## create binary plink file for chr 22 (to have small example)
+plink --file hapmap3_r3_b36_fwd.consensus.qc.poly --make-bed --chr 22 --out hapmapch22
+
+## get superpopulation data
+wget https://www.dropbox.com/s/yozrzsdrwqej63q/phase3_corrected.psam?dl=1 
+mv phase3_corrected.psam\?dl\=1 phase3_corrected.psam
+
+## problems with zsh in Catalina to download dropbox link
+## zsh: no matches found: 
+## https://www.dropbox.com/s/yozrzsdrwqej63q/phase3_corrected.psam?dl=1
+## problems downloading data from dropbox
+## https://www.bartbusschots.ie/s/2019/06/12/bash-to-zsh-file-globbing-and-no-matches-found-errors/
+## setopt NULL_GLOB
+## This doesn't work
+## This worked: pasted the dropbox link on browser url and downloaded fine
+
+```
+
+**Calculate Fst among populations**
+```{r, engine='bash', eval=FALSE}
+plink --bfile hapmapch22 --fst --within relationships_w_pops_051208.txt --mwithin 5 --out output/hapmapch22-all
+```
+
+**Calculate Fst among sub-populations**
+```{r, eval=FALSE}
+
+## create list of EUR, AFR, 
+
+reldata = read_tsv(paste0(work.dir, "relationships_w_pops_051208.txt"))
+samdata = read_tsv(paste0(work.dir,"phase3_corrected.psam"),guess_max = 2500) ## guess_max set to large number so that R reader consideres non numeric PAT and MAT values
+names(samdata)[names(samdata)=="$IID"] = "IID"
+superpop = samdata %>% select(SuperPop,Population) %>% unique()
+eur = reldata %>% inner_join(superpop, by=c("population"="Population")) %>% filter(SuperPop=="EUR")
+afr = reldata %>% inner_join(superpop, by=c("population"="Population")) %>% filter(SuperPop=="AFR")
+eas = reldata %>% inner_join(superpop, by=c("population"="Population")) %>% filter(SuperPop=="EAS")
+
+reldata %>% inner_join(superpop, by=c("population"="Population")) %>% count(population, SuperPop) %>% arrange(SuperPop)
+```
+
+**Write list of EUR, EAS, AFR individuals**
+```{r, eval=FALSE}
+write_tsv(eur, paste0(work.dir,"EUR.sam"))
+write_tsv(afr, paste0(work.dir,"AFR.sam"))
+write_tsv(eas, paste0(work.dir,"EAS.sam"))
+
+## plink --bfile hapmapch22 --fst --keep EUR.sam  --within relationships_w_pops_051208.txt --mwithin 5 --out hapmapch22-EUR
+
+```
+
+```{r, engine='bash', eval=FALSE}
+
+plink --bfile hapmapch22 --fst --keep AFR.sam  --within relationships_w_pops_051208.txt --mwithin 5 --out output/hapmapch22-AFR
+plink --bfile hapmapch22 --fst --keep EUR.sam  --within relationships_w_pops_051208.txt --mwithin 5 --out output/hapmapch22-EUR
+plink --bfile hapmapch22 --fst --keep EAS.sam  --within relationships_w_pops_051208.txt --mwithin 5 --out output/hapmapch22-EAS
+
+```
+

@@ -1,0 +1,33 @@
+PLINK v1.90b6.15 64-bit (21 Jan 2020)
+Options in effect:
+  --bfile /Users/haekyungim/Downloads/hapmap/hapmapch22
+  --covar /Users/haekyungim/Downloads/hapmap/output/pca.eigenvec
+  --covar-number 1-4
+  --linear
+  --maf 0.05
+  --out output/igrowth-adjPC
+  --pheno /Users/haekyungim/Downloads/hapmap/igrowth.pheno
+  --pheno-name growth
+
+Hostname: MED-41220.local
+Working directory: /Users/haekyungim/Github/hgen471
+Start time: Mon Jan 27 08:53:50 2020
+
+Random number seed: 1580136830
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+20649 variants loaded from .bim file.
+1397 people (683 males, 714 females) loaded from .fam.
+501 phenotype values present after --pheno.
+Using 1 thread (no multithreaded calculations invoked).
+--covar: 4 out of 20 covariates loaded.
+Before main variant filters, 1198 founders and 199 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.997523.
+3046 variants removed due to minor allele threshold(s)
+(--maf/--max-maf/--mac/--max-mac).
+17603 variants and 1397 people pass filters and QC.
+Phenotype data is quantitative.
+Writing linear model association results to output/igrowth-adjPC.assoc.linear
+... done.
+
+End time: Mon Jan 27 08:53:51 2020
