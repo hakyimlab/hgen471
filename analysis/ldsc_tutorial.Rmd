@@ -116,6 +116,11 @@ And run similar command for `UKB_21001_Body_mass_index_BMI.txt.gz`.
 You may notice that the formatting script also does some quality control and sanity check. 
 So, if possible, we'd prefer perform formatting with this script rather than writing our own.
 
+*Side note*: we find that the default setting of `munge_sumstats.py` may consume large amount of memory, which could cause significant slow down of the run when the RAM is limited. 
+To account for that, we'd suggest to adjust the default by changing `--chunksize`. 
+For instance, setting `--chunksize 500000` on RCC login node.
+
+
 # Run LDSC regression
 
 OK, it's time to run LDSC regression. 
