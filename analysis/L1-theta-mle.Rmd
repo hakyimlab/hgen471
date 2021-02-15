@@ -20,7 +20,9 @@ abline(v=y/n,col='gray')
 
 ```
 
+
 What if we got 10 heads?
+
 ```{r}
 
 n = 10

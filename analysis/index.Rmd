@@ -8,4 +8,17 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+
+- [L1-binomial-parameter-post](L1-binomial-parameter-post.html)
+- [L1-female-birth-rate.html](L1-female-birth-rate.html)
+- [L1-miscel.html](L1-miscel.html)
+- [L1-theta-mle.html](L1-theta-mle.html)
+- [L3-Bonferroni.html](L3-Bonferroni.html)
+- [L3-Crohns-Additive.html](L3-Crohns-Additive.html)
+- [L3-multiple-testing.html](L3-multiple-testing.html)
+- [L4-power.html](L4-power.html)
+- [L6-download-data.html](L6-download-data.html)
+- [L6-population-structure.html](L6-population-structure.html)
+- [L8-GRM.html](L8-GRM.html)
+- [L8-LD-score.html](L8-LD-score.html)
+- [ldsc_tutorial.html](ldsc_tutorial.html)
